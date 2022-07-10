@@ -1,0 +1,54 @@
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing:border-box;
+}
+:root{
+    --slate-100:#f1f5f9;
+    --slate-200:#e2e8f0;
+    --slate-300:#cbd5e1;
+    --slate-400:#94a3b8;
+    --slate-500:#64748b;
+
+    --gray-100:#f3f4f6;
+    --gray-200:#e5e7eb;
+    --gray-300:#d1d5db;
+    --gray-400:#9ca3af;
+    --gray-500:#6b7280;
+    --gray-900: #111827;
+
+    --blue-500:#3b82f6;
+    --blue-600: #2563eb;
+
+    --limon-200:#d9f99d;
+    --limon-300: #bef264;
+    --limon-800:#3f6212;
+    
+    --green-300:#86efac;
+    --green-500:#22c55e;
+    --green-800:#166534;
+}
+
+@media(max-width: 1080px){
+    html{
+        font-size:93.75%;
+    }
+}
+@media(max-width: 720px){
+    html{
+        font-size:87.5%;
+    }
+}
+html{
+    font-size:130%;
+}
+body{
+    background-color: var(--slate-100);
+    display:flex;
+    align-items: center;
+    justify-content: center;
+}
+
+body ,input, textarea, select, button{
+    font: 500 1rem "Poppins", sans-serif;
+}
