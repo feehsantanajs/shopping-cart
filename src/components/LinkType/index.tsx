@@ -6,7 +6,7 @@ interface LinkTypeProps{
 export function LinkType({params, name}:LinkTypeProps){
     return(
         <Link href={`/cart/${params}`}>
-          {name}
+          <a>{name}</a>
         </Link>
     )
 }

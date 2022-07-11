@@ -1,9 +1,9 @@
-
 import { useRouter } from 'next/router';
 import Items from '../../components/Items';
 import styles from '../../styles/cart.module.scss';
 import { api } from '../../../services/api';
-import {useQuery} from 'react-query'
+import {useQuery} from 'react-query';
+
 type Item = {
     id:number;
     name:string;
@@ -45,45 +45,48 @@ export default function Cart(){
     })
 
     return(
-        <section className={styles.containerSection}>
-            {isLoading 
-            ? (
-                <p> Carregando... </p>
-            )
-            : isError ?(<p>Erro no carregamento.</p>)
-            :(
-           <>
-                <div className={styles.title}>
-                    <span>Meu Carrinho</span> 
-                </div>
-                <div className={styles.productContainer} >   
-                    {items} 
-                </div>  
-                <div className={styles.totalContainer} >   
-                    <div className={styles.total}>
-                        <span>Total</span>
-                        <span>{new Intl.NumberFormat('pt-BR',{
-                            style: 'currency',
-                            currency: 'BRL'
-                        }).format(Number(totalValueItems))}
-                        </span>
+        <div className={styles.container}>
+            <section className={styles.containerSection}>
+                {isLoading 
+                ? (
+                    <p> Carregando... </p>
+                )
+                : isError ?(<p>Erro no carregamento.</p>)
+                :(
+            <>
+                    <div className={styles.title}>
+                        <span>Meu Carrinho</span> 
                     </div>
-                    {Number(totalValueItems) >= 10
-                    ?(
-                        <div className={styles.shipping}>
-                            <span>Parabéns, sua compra tem frete grátis !</span>
+                    <div className={styles.productContainer} >   
+                        {items} 
+                    </div>  
+                    <div className={styles.totalContainer} >   
+                        <div className={styles.total}>
+                            <span>Total</span>
+                            <span>{new Intl.NumberFormat('pt-BR',{
+                                style: 'currency',
+                                currency: 'BRL'
+                            }).format(Number(totalValueItems))}
+                            </span>
                         </div>
-                    ) 
-                    :   (<></>)
-                    }
-                </div>
-                <footer className={styles.containerFooter} >   
-                    <button>Finalizar Compra</button>
-                </footer>
-           </>
-            )
-            }
-            
-        </section>
+                        {Number(totalValueItems) >= 10
+                        ?(
+                            <div className={styles.shipping}>
+                                <span>Parabéns, sua compra tem frete grátis !</span>
+                            </div>
+                        ) 
+                        :   (<></>)
+                        }
+                    </div>
+                    <footer className={styles.containerFooter} >   
+                        <button>Finalizar Compra</button>
+                    </footer>
+            </>
+                )
+                }
+                
+            </section>
+        </div>
+         
     )
 }
