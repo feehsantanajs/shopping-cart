@@ -3,6 +3,7 @@ import Items from '../../components/Items';
 import styles from '../../styles/cart.module.scss';
 import { api } from '../../../services/api';
 import {useQuery} from 'react-query';
+import { DotLoader } from 'react-spinners';
 
 type Item = {
     id:number;
@@ -29,9 +30,7 @@ export default function Cart(){
     
     const {data, isLoading, isError} = useQuery('items', async () =>{
         const result = await api(`${id}`)
-        const data = await result.data
-
-        return result
+        return result;
     });
     const items = data?.data.map((res:Repository)=>{
         return res.items.map(item =>{
@@ -49,39 +48,41 @@ export default function Cart(){
             <section className={styles.containerSection}>
                 {isLoading 
                 ? (
-                    <p> Carregando... </p>
+                    <div className={styles.containerInfo}>
+                        <DotLoader color="black" className={styles.spinner}/>
+                    </div>
                 )
-                : isError ?(<p>Erro no carregamento.</p>)
+                : isError ?(<div className={styles.containerInfo}>Erro no carregamento</div>)
                 :(
-            <>
-                    <div className={styles.title}>
-                        <span>Meu Carrinho</span> 
-                    </div>
-                    <div className={styles.productContainer} >   
-                        {items} 
-                    </div>  
-                    <div className={styles.totalContainer} >   
-                        <div className={styles.total}>
-                            <span>Total</span>
-                            <span>{new Intl.NumberFormat('pt-BR',{
-                                style: 'currency',
-                                currency: 'BRL'
-                            }).format(Number(totalValueItems))}
-                            </span>
+                    <>
+                        <div className={styles.title}>
+                            <span>Meu Carrinho</span> 
                         </div>
-                        {Number(totalValueItems) >= 10
-                        ?(
-                            <div className={styles.shipping}>
-                                <span>Parabéns, sua compra tem frete grátis !</span>
+                        <div className={styles.productContainer} >   
+                            {items} 
+                        </div>  
+                        <div className={styles.totalContainer} >   
+                            <div className={styles.total}>
+                                <span>Total</span>
+                                <span>{new Intl.NumberFormat('pt-BR',{
+                                    style: 'currency',
+                                    currency: 'BRL'
+                                }).format(Number(totalValueItems))}
+                                </span>
                             </div>
-                        ) 
-                        :   (<></>)
-                        }
-                    </div>
-                    <footer className={styles.containerFooter} >   
-                        <button>Finalizar Compra</button>
-                    </footer>
-            </>
+                            {Number(totalValueItems) >= 10
+                            ?(
+                                <div className={styles.shipping}>
+                                    <span>Parabéns, sua compra tem frete grátis !</span>
+                                </div>
+                            ) 
+                            :   (<></>)
+                            }
+                        </div>
+                        <footer className={styles.containerFooter} >   
+                            <button>Finalizar Compra</button>
+                        </footer>
+                    </>
                 )
                 }
                 
