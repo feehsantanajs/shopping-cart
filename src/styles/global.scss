@@ -29,22 +29,22 @@
     --green-800:#166534;
 }
 
+html{
+    font-size:130%;
+}
 @media(max-width: 1080px){
     html{
-        font-size:93.75%;
+        font-size:100%;
     }
 }
 @media(max-width: 720px){
     html{
-        font-size:87.5%;
+        font-size:93.75%;
     }
 }
-html{
-    font-size:130%;
-}
+
 body{
-    background-color: var(--slate-100);
-    
+    background-color: var(--slate-100);  
 }
 
 body ,input, textarea, select, button{
